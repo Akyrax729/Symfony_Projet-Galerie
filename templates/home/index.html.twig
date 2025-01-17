@@ -10,6 +10,21 @@
     </section>
 
     <section id="preview">
-    
+        {% for product in product %}
+
+            <div>
+                <h2> {{ product.label }} </h2>
+                <img src="{{asset('images/'~product.imagename)}}" alt="{{product.label}}">
+                <p> {{ product.description|slice(0, 30)~... }} </p>
+                
+                <div>{% for tags in product.tags %}
+                    
+                        <span> {{ tags.label }} </span>
+                    
+                {% endfor %}</div>
+
+            </div>
+
+        {% endfor %}
     </section>
 {% endblock %}

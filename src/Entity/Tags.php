@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\GalerieRepository;
+use App\Repository\TagsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: GalerieRepository::class)]
-class Galerie
+#[ORM\Entity(repositoryClass: TagsRepository::class)]
+class Tags
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,16 +16,12 @@ class Galerie
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
-
-    #[ORM\ManyToOne(inversedBy: 'galeries')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
+    private ?string $label = null;
 
     /**
      * @var Collection<int, Product>
      */
-    #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'galerie')]
+    #[ORM\ManyToMany(targetEntity: Product::class, mappedBy: 'tags')]
     private Collection $products;
 
     public function __construct()
@@ -38,26 +34,14 @@ class Galerie
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getLabel(): ?string
     {
-        return $this->name;
+        return $this->label;
     }
 
-    public function setName(string $name): static
+    public function setLabel(string $label): static
     {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): static
-    {
-        $this->user = $user;
+        $this->label = $label;
 
         return $this;
     }
@@ -74,7 +58,7 @@ class Galerie
     {
         if (!$this->products->contains($product)) {
             $this->products->add($product);
-            $product->setGalerie($this);
+            $product->addTag($this);
         }
 
         return $this;
@@ -83,10 +67,7 @@ class Galerie
     public function removeProduct(Product $product): static
     {
         if ($this->products->removeElement($product)) {
-            // set the owning side to null (unless already changed)
-            if ($product->getGalerie() === $this) {
-                $product->setGalerie(null);
-            }
+            $product->removeTag($this);
         }
 
         return $this;

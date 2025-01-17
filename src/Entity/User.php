@@ -34,21 +34,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     /**
-     * @var Collection<int, Galerie>
-     */
-    #[ORM\OneToMany(targetEntity: Galerie::class, mappedBy: 'user')]
-    private Collection $galeries;
-
-    /**
      * @var Collection<int, Product>
      */
-    #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'user')]
-    private Collection $products;
+    #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'User')]
+    private Collection $user_products;
 
     public function __construct()
     {
-        $this->galeries = new ArrayCollection();
-        $this->products = new ArrayCollection();
+        $this->user_products = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -126,59 +119,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Galerie>
-     */
-    public function getGaleries(): Collection
-    {
-        return $this->galeries;
-    }
-
-    public function addGalery(Galerie $galery): static
-    {
-        if (!$this->galeries->contains($galery)) {
-            $this->galeries->add($galery);
-            $galery->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeGalery(Galerie $galery): static
-    {
-        if ($this->galeries->removeElement($galery)) {
-            // set the owning side to null (unless already changed)
-            if ($galery->getUser() === $this) {
-                $galery->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Product>
      */
-    public function getProducts(): Collection
+    public function getUserProducts(): Collection
     {
-        return $this->products;
+        return $this->user_products;
     }
 
-    public function addProduct(Product $product): static
+    public function addUserProduct(Product $userProduct): static
     {
-        if (!$this->products->contains($product)) {
-            $this->products->add($product);
-            $product->setUser($this);
+        if (!$this->user_products->contains($userProduct)) {
+            $this->user_products->add($userProduct);
+            $userProduct->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeProduct(Product $product): static
+    public function removeUserProduct(Product $userProduct): static
     {
-        if ($this->products->removeElement($product)) {
+        if ($this->user_products->removeElement($userProduct)) {
             // set the owning side to null (unless already changed)
-            if ($product->getUser() === $this) {
-                $product->setUser(null);
+            if ($userProduct->getUser() === $this) {
+                $userProduct->setUser(null);
             }
         }
 

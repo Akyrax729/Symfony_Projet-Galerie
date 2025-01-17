@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout d'un produit{% endblock %}
+
+{% block main %}
+    {{form_start(productform)}} 
+        {{form_widget(productform)}}
+        <button>Ajouter</button>
+    {{form_end(productform)}}
+
+
+{% endblock %}

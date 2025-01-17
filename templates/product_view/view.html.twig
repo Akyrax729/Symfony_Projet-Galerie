@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ product.label }} {% endblock %}
+
+{% block main %}
+            <div>
+                <h2> {{ product.label }} </h2>
+                <img src="{{asset('images/'~product.imagename)}}" alt="{{product.label}}">
+                <p> {{ product.description }} </p>
+                <div>
+                    {% for tags in product.tags %}
+                        
+                        <span> {{ tags.label }} </span>
+                        
+                    {% endfor %}
+                </div>
+                {% if app.user == product.user %}
+                    <a href= {{path('update_product',{'id' : product.id})}} >Modifier</a>
+                    <form method="POST" onsubmit="return confirm('Confimer la suppression ?')" action=" {{ path('delete_product', {'id': product.id}) }} ">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="_token" value="{{csrf_token('COUCOU' ~ product.id)}}">
+                        <input type="submit" id="delete" value="Supprimer">
+                    </form>
+                {% endif %}
+            </div>
+{% endblock %}
