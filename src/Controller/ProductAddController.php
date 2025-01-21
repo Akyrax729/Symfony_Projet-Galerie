@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class ProductAddController extends AbstractController{
     #[Route('/product/add', name: 'app_product_add')]
-    public function add(UserInterface $userid, Request $request, EntityManagerInterface $entityManager): Response
+    public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
         $product = new Product();
 
@@ -29,8 +29,6 @@ final class ProductAddController extends AbstractController{
         {
 
             $product->setUser($get);
-
-            $entityManager->persist($get);
 
             $entityManager->persist($product);
 

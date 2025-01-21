@@ -3,7 +3,7 @@
 {% block title %} {{ product.label }} {% endblock %}
 
 {% block main %}
-            <div>
+            <div class="viewcard">
                 <h2> {{ product.label }} </h2>
                 <img src="{{asset('images/'~product.imagename)}}" alt="{{product.label}}">
                 <p> {{ product.description }} </p>

@@ -1,16 +1,17 @@
 @use "../abstract/mixins";
 @use "../abstract/variable" as var;
 
-header {
-        @include mixins.flex();
+header { 
         margin-bottom: 50px;
 
     nav {
         background-color: var.$secondarycolor;
+        box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.7);
         border-radius: 10px;
+        width: 100%;
 
         ul {
-            @include mixins.flex();
+            @include mixins.flex($justify:space-between);
 
             li {
                 padding: 0.5rem 1rem;

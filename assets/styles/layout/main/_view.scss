@@ -1,0 +1,16 @@
+@use "../../abstract/mixins";
+@use "../../abstract/variable" as var;
+
+.viewcard {
+    @include mixins.flex(column);
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    margin: 1rem 5px;
+    color: var.$primarycolor;
+    max-width: 100%;
+    min-width: 215px;
+
+    img {
+        max-width: 500px;
+    }
+}

@@ -18,17 +18,26 @@ final class ModifyController extends AbstractController{
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $entityManager->persist($product);
+        $get = $this->getUser();
 
-            $entityManager->flush();
+        // dump($product);
+        // dd($get);
 
-            $this->addFlash('success', 'Product modifié avec succès !');
+        if($get == $product){
+            if($form->isSubmitted() && $form->isValid())
+            {
+                $entityManager->persist($product);
 
-            return $this->redirectToRoute('app_product');
+                $entityManager->flush();
 
-        }
+                $this->addFlash('success', 'Product modifié avec succès !');
+
+                return $this->redirectToRoute('app_product');
+
+            }
+
+        return $this->redirectToRoute('app_home');
+    }
 
         return $this->render('modify/modify.html.twig', [
             'productform'=>$form->createView(),

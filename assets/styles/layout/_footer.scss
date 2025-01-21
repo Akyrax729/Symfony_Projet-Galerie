@@ -4,11 +4,16 @@
 footer {
     @include mixins.flex();
     background-color: var.$secondarycolor;
-    padding: 2rem;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.7);
     margin-top: 2rem;
+    padding: 0.5rem;
     border-radius: 10px;
 
     a{
         @include mixins.hover(var.$backgroundcolor);
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        font-size: 28px;
+        color: black;
     }
 }

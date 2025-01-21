@@ -21,11 +21,10 @@ class ProductCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id'),
-            AssociationField::new('user','id'),
+            // AssociationField::new('user','id'),
             TextField::new('label'),
             TextEditorField::new('description'),
             TextEditorField::new('image_name'),
-            IntegerField::new('updated_at'),
 
         ];
     }

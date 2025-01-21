@@ -3,10 +3,13 @@
 {% block title %}Ajout d'un produit{% endblock %}
 
 {% block main %}
-    {{form_start(productform)}} 
-        {{form_widget(productform)}}
-        <button>Ajouter</button>
-    {{form_end(productform)}}
+
+    <section id="form">
+        {{form_start(productform)}} 
+            {{form_widget(productform)}}
+            <button>Ajouter</button>
+        {{form_end(productform)}}
+    </section>
 
 
 {% endblock %}

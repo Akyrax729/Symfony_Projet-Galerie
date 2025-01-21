@@ -20,6 +20,12 @@ class Commentaire
     #[ORM\Column(length: 255)]
     private ?string $user = null;
 
+    #[ORM\ManyToOne(inversedBy: 'commentaires')]
+    private ?User $users = null;
+
+    #[ORM\ManyToOne(inversedBy: 'commentaires')]
+    private ?Product $product = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -37,14 +43,26 @@ class Commentaire
         return $this;
     }
 
-    public function getUser(): ?string
+    public function getUsers(): ?User
     {
-        return $this->user;
+        return $this->users;
     }
 
-    public function setUser(string $user): static
+    public function setUsers(?User $users): static
     {
-        $this->user = $user;
+        $this->users = $users;
+
+        return $this;
+    }
+
+    public function getProduct(): ?Product
+    {
+        return $this->product;
+    }
+
+    public function setProduct(?Product $product): static
+    {
+        $this->product = $product;
 
         return $this;
     }

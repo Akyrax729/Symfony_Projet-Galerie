@@ -17,32 +17,46 @@
 }
 
 #preview {
-    @include mixins.flex();
+    @include mixins.flex($justify:space-between);
 
     .card {
-        @include mixins.flex(column, space-between);
         background-color: rgba(0, 0, 0, 0.6);
         border-radius: 10px;
-        // padding: 2rem;
-        margin: 1rem;
+        margin: 1rem 5px;
         color: var.$primarycolor;
-        width: 20%;
-        height: 300px;
-
-       img {
-            width: 200px;
-            height: 200px;
-            object-fit: contain;
-        }
+        max-width: 25%;
+        min-width: 215px;
 
         a {
+            @include mixins.flex(column, space-between);
             color: var.$secondarycolor;
+            padding: 1rem;
+            height: 320px;
 
             &:hover {
                 color: var.$primarycolor;
-                background-color: black;
-                padding: 2rem;
+                border-radius: 10px;
+                background-color: rgba(0, 0, 0, 0.2);
+                
+            }
+
+            img {
+                width: 200px;
+                height: 200px;
+                object-fit: contain;
+                border-radius: 10px;
+            }
+
+            .tags {
+                @include mixins.flex(column);
             }
         }
+    }
+}
+
+#form {
+    form {
+        @include mixins.flex();
+
     }
 }

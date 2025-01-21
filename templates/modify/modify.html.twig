@@ -3,8 +3,10 @@
 {% block title %}Modifier un produit{% endblock %}
 
 {% block main %}
-    {{form_start(productform)}} 
-        {{form_widget(productform)}}
-        <button>Modifier</button>
-    {{form_end(productform)}}
+    <section id="form">
+        {{form_start(productform)}} 
+            {{form_widget(productform)}}
+            <button>Modifier</button>
+        {{form_end(productform)}}
+    </section>
 {% endblock %}
