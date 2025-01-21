@@ -1,0 +1,14 @@
+@use "../abstract/mixins";
+@use "../abstract/variable" as var;
+
+footer {
+    @include mixins.flex();
+    background-color: var.$secondarycolor;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-radius: 10px;
+
+    a{
+        @include mixins.hover(var.$backgroundcolor);
+    }
+}

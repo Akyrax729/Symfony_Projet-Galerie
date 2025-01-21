@@ -1,0 +1,28 @@
+@use "../abstract/mixins";
+@use "../abstract/variable" as var;
+
+header {
+        @include mixins.flex();
+        margin-bottom: 50px;
+
+    nav {
+        background-color: var.$secondarycolor;
+        border-radius: 10px;
+
+        ul {
+            @include mixins.flex();
+
+            li {
+                padding: 0.5rem 1rem;
+
+                a {
+                    @include mixins.hover(var.$backgroundcolor);
+                    padding: 0.5rem 1rem;
+                    border-radius: 10px;
+                    font-size: 28px;
+                    color: black;
+                }
+            }
+        }
+    }
+}

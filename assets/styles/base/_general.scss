@@ -1,0 +1,9 @@
+@use "../abstract/variable" as var;
+
+body {
+    background-color: var.$backgroundcolor;
+    background-image: url("https://www.transparenttextures.com/patterns/flowers.png");
+    margin: 0 20%;
+    margin-top: 3rem;
+}
+

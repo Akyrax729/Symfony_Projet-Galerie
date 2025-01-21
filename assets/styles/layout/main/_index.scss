@@ -1,0 +1,48 @@
+@use "../../abstract/mixins";
+@use "../../abstract/variable" as var;
+
+#intro {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    padding: 2rem;
+    color: var.$primarycolor;
+
+    h2 {
+        font-size: 40px;
+    }
+    p {
+        font-size: 20px;
+        text-align: justify;
+    }
+}
+
+#preview {
+    @include mixins.flex();
+
+    .card {
+        @include mixins.flex(column, space-between);
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 10px;
+        // padding: 2rem;
+        margin: 1rem;
+        color: var.$primarycolor;
+        width: 20%;
+        height: 300px;
+
+       img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+        }
+
+        a {
+            color: var.$secondarycolor;
+
+            &:hover {
+                color: var.$primarycolor;
+                background-color: black;
+                padding: 2rem;
+            }
+        }
+    }
+}

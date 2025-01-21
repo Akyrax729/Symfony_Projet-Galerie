@@ -4,7 +4,7 @@
 
 {% block main %}
     <section id="intro">
-        <h1>Bienvenue</h1>
+        <h2>Bienvenue</h2>
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse provident magnam a officiis aspernatur. Sapiente voluptatibus maxime cumque consequuntur corrupti quis quo ratione rerum. A ipsa quidem molestias ipsam temporibus!
         Alias perspiciatis quaerat consequuntur aut ipsa at inventore amet rem nisi optio, hic, animi nulla repellendus quibusdam odio veritatis magni fugit illum eligendi rerum delectus ipsum. Accusamus labore ipsum officia?</p>
     </section>
@@ -12,10 +12,12 @@
     <section id="preview">
         {% for product in product %}
 
-            <div>
-                <h2> {{ product.label }} </h2>
-                <img src="{{asset('images/'~product.imagename)}}" alt="{{product.label}}">
-                <p> {{ product.description|slice(0, 30)~... }} </p>
+            <div class="card">
+                <a href=" {{ path('app_product_view', {'id':product.id}) }} ">
+                    <h2> {{ product.label }} </h2>
+                    <img src="{{asset('images/'~product.imagename)}}" alt="{{product.label}}">
+                    <p> {{ product.description|slice(0, 30)~"..." }} </p>
+                </a>
                 
                 <div>{% for tags in product.tags %}
                     

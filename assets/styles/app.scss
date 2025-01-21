@@ -1,5 +1,5 @@
-body {
-    background-color: #884a74;
-    background-image: url("https://www.transparenttextures.com/patterns/flowers.png");
-    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
-}
+@use "base/reset";
+@use "base/general";
+@use "layout/header";
+@use "layout/main";
+@use "layout/footer";
