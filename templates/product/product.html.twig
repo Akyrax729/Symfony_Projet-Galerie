@@ -3,6 +3,14 @@
 {% block title %}Hello ProductController!{% endblock %}
 
 {% block main %}
+    <div class="filter">
+        <section id="form">
+            {{form_start(filterForm)}} 
+                {{form_widget(filterForm)}}
+                <button>Filtrer</button>
+            {{form_end(filterForm)}}
+        </section>
+    </div>
     <section id="preview">
         {% for product in products %}
 
@@ -11,21 +19,22 @@
                     <h2> {{ product.label }} </h2>
                     <img src="{{asset('images/'~product.imagename)}}" alt="{{product.label}}">
                     <p> {{ product.description|slice(0, 30)~'...' }} </p>
-                <div>
-                    {% for tags in product.tags %}
-                        
-                            <span> {{ tags.label }} </span>
-                        
-                    {% endfor %}</div>
+                    <div>
+                        {% for tags in product.tags %}
+                            
+                                <span> {{ tags.label }} </span>
+                            
+                        {% endfor %}</div>
 
-                </div>
-            </a>
+                        <p> {{ product.estimatedprice }}€ </p>
+                </a>
+            </div>
             
         {% endfor %}
-
-        {% if app.user != NULL %}
-            <a href="{{path ('app_product_add')}}">Ajouter un objet</a>
-        {% endif %}
         
     </section>
+
+    {% if app.user != NULL %}
+            <a href="{{path ('app_product_add')}}">Ajouter un objet</a>
+    {% endif %}
 {% endblock %}

@@ -131,6 +131,10 @@ class Product
     #[ORM\OneToMany(targetEntity: Note::class, mappedBy: 'Product')]
     private Collection $notes;
 
+    #[ORM\Column(nullable: true)]
+    private ?float $estimated_price = null;
+
+
     public function setImageFile(?File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
@@ -215,4 +219,19 @@ class Product
 
         return $this;
     }
+
+    public function getEstimatedPrice(): ?float
+    {
+        return $this->estimated_price;
+    }
+
+    public function setEstimatedPrice(?float $estimated_price): static
+    {
+        $this->estimated_price = $estimated_price;
+
+        return $this;
+    }
+
+
+
 }

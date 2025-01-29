@@ -23,7 +23,8 @@ final class ModifyController extends AbstractController{
         // dump($product);
         // dd($get);
 
-        if($get == $product){
+        if($get == $product->getUser()){
+        
             if($form->isSubmitted() && $form->isValid())
             {
                 $entityManager->persist($product);
@@ -36,12 +37,11 @@ final class ModifyController extends AbstractController{
 
             }
 
-        return $this->redirectToRoute('app_home');
-    }
-
-        return $this->render('modify/modify.html.twig', [
-            'productform'=>$form->createView(),
-            
-        ]);
+            return $this->render('modify/modify.html.twig', [
+                'productform'=>$form->createView(),
+                
+            ]);
+        }
+        return $this->redirectToRoute('app_home');  
     }
 }
